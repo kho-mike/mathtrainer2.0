@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" manifest="/offline.manifest">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический тренажёр</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/script.js"></script>
+    <script src="js/user.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header__left">LEFT</div>
+
+
+
+            <div class="header__center">
+                <div class="msgBox" id="msgBox">
+                </div>
+            </div>
+
+
+
+
+            <div class="header__right">
+                <div class="header__user" id="user">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="menu main__menu main__menu-hidden" id="mainMenu"></div>
+
+            <div class="main__content">
+                <div class="app" id="app">
+                    <div class="app-wrapper__header">
+                        Упражнение "${operationRUS} НА ${this.memory.operand}"
+                    </div>
+                    <div class="app-wrapper__content">
+                        <div class="element" id="firstOperand">${2}</div>
+                        <div class="element" id="operator"> ${:} </div>
+                        <div class="element" id="secondOperand">${2}</div>
+                        <div class="element">${=}</div>
+                        <input class="input-waiting" id="answer" type="text" autofocus onchange="app.getAnswer(this.value)">
+                    </div>
+                    <div class="app-wrapper__info" id="app-wrapper__info">
+                    <!--    <div class="info__stat">
+                            <table class="table-stat" id="table-stat" cellspacing="0" cellpadding="5">
+                                <caption>Статистика упражнения</caption>
+                                <tr><td class="table-stat__first-col">Шаг</td><td class="table-stat__second-col">1</td></tr>
+                                <tr><td class="table-stat__first-col">Количество ошибок</td><td class="table-stat__second-col">1</td></tr>
+                                <tr><td class="table-stat__first-col">Количество верных ответов</td><td class="table-stat__second-col">1</td></tr>
+                                <tr><td class="table-stat__first-col">Всего ответов</td><td class="table-stat__second-col">1</td></tr>
+                                <tr><td class="table-stat__first-col">Время</td><td class="table-stat__second-col">1</td></tr>
+                            </table>
+                        </div>
+                        <div class="info__log">
+                            <table class="table-log" id="table-log" cellspacing="0" cellpadding="5">
+                                <caption>Ввденные ответы:</caption>
+                                <tr>
+                                <th>Пример</th>
+                                <th>Ответ</th>
+                                <th>Ожидание</th>
+                                <th>Время</th>
+                                </tr>
+                                <tr><td>34,5</td><td>3,5</td><td>36</td><td>23</td></tr>
+                                <tr><td>35,5</td><td>4</td><td>36⅔</td><td>23–23,5</td></tr>
+                                <tr><td>36</td><td>4,5</td><td>37⅓</td><td>23,5</td></tr>
+                                <tr><td>36,5</td><td>5</td><td>38</td><td>24</td></tr>
+                                <tr><td>37</td><td>5,5</td><td>38⅔</td><td>24,5</td></tr>
+                                <tr><td>38</td><td>6</td><td>39⅓</td><td>25</td></tr>
+                                <tr><td>38,5</td><td>6,5</td><td>40</td><td>25,5</td></tr>
+                                <tr><td>39</td><td>7</td><td>40⅔</td><td>25,5–26</td></tr>
+                            </table>
+                        </div>-->
+                    </div> 
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

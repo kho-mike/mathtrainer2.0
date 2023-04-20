@@ -1,0 +1,55 @@
+/***********************Application main content*******************/
+.app-wrapper {
+    text-align: center;
+}
+
+.app-wrapper__header {
+    text-align: center;
+}
+
+.app-wrapper__content {
+    display: flex;
+    justify-content: center;
+}
+
+.app-wrapper__content * {
+    margin: 5px;
+}
+
+.app-wrapper__content input{
+    width: 40px;
+}
+
+/***********************Information block**************************/
+.table-stat, .table-log {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.table-stat td {
+    width: 50%;
+    
+}
+
+.table-stat__first-col {
+    border-bottom: 0.3px solid grey;
+}
+
+.table-stat__second-col {
+    border-bottom: 0.3px solid grey;
+    text-align: center;
+}
+
+.table-log {
+    border-top: 0.3px solid grey;
+    border-right: 0.3px solid grey;
+}
+
+.table-log td, .table-log th {
+    text-align: center;
+    border-left: 0.3px solid grey;
+    border-bottom: 0.3px solid grey;
+}
+
+
+/*  */

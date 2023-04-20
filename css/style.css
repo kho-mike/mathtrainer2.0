@@ -1,0 +1,159 @@
+@font-face {
+    font-family: --math-trainer__ubuntu;
+    src: url(../fonts/Ubuntu-Regular.ttf) format("truetype");
+}
+
+body {
+    background-color: rgb(170, 170, 170);
+    color:azure;
+    padding: 0;
+    margin: 0;
+
+
+    font-family: --math-trainer__ubuntu;
+
+    --color__grey: rgb(177, 177, 177);
+    --color__blue: rgb(143, 180, 223);
+    --color__black: black;
+
+}
+
+
+.btn {
+    min-width: 150px;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+
+    background-color: var(--color__blue);
+    color: var(--color__black);
+
+    /* filter: blur(2px); */
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 100vh;
+
+    outline: 0.3px solid black;
+}
+
+/***************************** Header ******************************************/
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+
+}
+
+.header__left, .header__center, .header__right {
+    display: flex;
+    
+}
+
+.header__left {
+    justify-content: start;
+
+    width: 20%;
+
+}
+
+.header__right {
+    justify-content: end;
+
+    width: 20%;
+
+}
+
+.msgBox {
+    padding: 10px;
+    overflow: hidden;
+}
+
+.msg {
+    position: relative;
+    padding: 5px;
+    border-radius: 15px;
+    outline: 0.3px solid black;
+    display: flex;
+    width: 300px;
+    background-color: var(--color__blue);
+}
+
+.msg-created {
+    top: 300px;
+}
+
+.msg-visible {
+    top: 20px;
+    transition: 0.3s;
+}
+
+.msg-hidden {
+    top: -300px
+}
+
+.msg__logo {
+    outline: 0.3px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.msg__body {
+    padding: 5px;
+    flex-grow: 2;
+    outline: 0.3px solid black;
+}
+
+.msg__body-title {
+    font-weight: bold;
+}
+
+.msg__body-text {
+    font-weight: 100;
+}
+
+/***************************** Main ********************************************/
+
+.main {
+    display: flex;
+    
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.main__menu {
+    width: 200px;
+}
+
+.main__menu-hidden {
+    display: none;
+}
+
+.main__menu li {
+    list-style:none
+}
+
+.main__content {
+    flex-grow: 2;
+}
+
+
+.table-stat td {
+    width: 50%;
+    
+}
+
+.table-stat__first-col {
+    border-bottom: 0.3px solid grey;
+}
+
+.table-stat__second-col {
+    border-bottom: 0.3px solid grey;
+    text-align: center;
+}

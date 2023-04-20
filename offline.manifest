@@ -1,0 +1,16 @@
+CACHE MANIFEST #версия 1
+
+CACHE:
+index.html
+css/app.css
+css/style.css
+css/user.css
+js/user.css
+js/app.css
+js/script.css
+
+NETWORK:
+*
+
+FALLBACK:
+/ /offline.html
