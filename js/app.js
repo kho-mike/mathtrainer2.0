@@ -129,7 +129,7 @@ const app = {
         if(answeres.length > 0){
             timeStart = answeres[answeres.length - 1].timeStop;
         } else {
-            timeStart = '******';
+            timeStart = this.memory.timeStart;
         }
 
         answeres.push( {
@@ -170,10 +170,10 @@ const app = {
     },
 
     getExpression(){
-        if(this.temp.operation == 'composition'){
-            return `${this.memory.operand}" это ${ this.temp.currentValue } ${ this.memory.operator } "?"`;
+        if(this.memory.operation == 'composition'){
+            return `${this.memory.operand} состоит из ${ this.temp.currentValue } ${ this.memory.operator }`;
         } else {
-            return `${this.temp.currentValue} ${this.memory.operator} ${this.memory.operand} = ?`;
+            return `${this.temp.currentValue} ${this.memory.operator} ${this.memory.operand} =`;
         };
     },
 
@@ -300,10 +300,10 @@ const app = {
                 </div>
                 <div class="app-wrapper__content">
                     <div class="element"> ${ this.memory.operand } </div> 
-                    <div class="element"> это </div> 
+                    <div class="element"> состоит из </div> 
                     <div class="element" id="firstOperand"> ${ this.temp.currentValue } </div> 
                     <div class="element" id="operator">${ this.memory.operator }</div>
-                    <input class="input-waiting" id="" type="text" autofocus onchange=" app.getAnswer(this.value); ">
+                    <input class="input-waiting" id="" type="text" autofocus onchange=" app.getAnswer(this.value); " maxlength="2">
                 </div>
             `;
         } else {
@@ -322,7 +322,7 @@ const app = {
                     <div class="element" id="operator"> ${this.memory.operator} </div>
                     <div class="element" id="secondOperand">${this.memory.operand}</div>
                     <div class="element">=</div>
-                    <input class="input-waiting" id="answer" type="text" autofocus onchange="app.getAnswer(this.value)">
+                    <input class="input-waiting" id="answer" type="text" autofocus onchange="app.getAnswer(this.value)" maxlength="2">
                 </div>
             `;
         };  
@@ -364,7 +364,7 @@ const app = {
                 <tr><td class="table-stat__first-col">Количество решенных примеров</td><td class="table-stat__second-col">${this.memory.rightAnsweres.length}</td></tr>
                 <tr><td class="table-stat__first-col">Количество ошибок</td><td class="table-stat__second-col">${this.memory.wrongAnsweres.length}</td></tr>
                 <tr><td class="table-stat__first-col">Всего введено ответов</td><td class="table-stat__second-col">${this.memory.allAnsweres.length}</td></tr>
-                <tr><td class="table-stat__first-col">Время с начала упражнения</td><td class="table-stat__second-col">${this.memory.timeLength}</td></tr>
+                <tr><td class="table-stat__first-col">Время с начала упражнения</td><td class="table-stat__second-col" id="app-timer"></td></tr>
             </table>
         </div>
         <div class="info__log">
@@ -373,14 +373,13 @@ const app = {
                 <tr>
                 <th>Пример</th>
                 <th>Ответ</th>
-                <th>Ожидание</th>
                 <th>Время</th>
                 </tr>
         `;
 
         for (const item of this.memory.allAnsweres) {
             info += `
-            <tr><td>${item.expression}</td><td>****</td><td>****</td><td>${Math.round(item.timeLength/1000)} sec</td></tr>
+            <tr><td>${item.expression}</td><td class="td-${item.input == item.current}">${item.input}</td><td>${Math.floor(item.timeLength/1000)} сек</td></tr>
             `;
         };
 
@@ -388,6 +387,18 @@ const app = {
         </table>
         </div>
         `;
+
+        setInterval( ()=>{
+            let now = new Date();
+            let count_seconds = Math.floor((now - this.memory.timeStart)/1000);
+            let count_minutes = 0;
+            if( count_seconds > 60 ){
+                count_minutes = Math.floor(count_seconds/60);
+                count_seconds -= count_minutes*60;
+            }
+
+            document.getElementById('app-timer').innerHTML = `${count_minutes} мин ${count_seconds} сек`;
+        }, 1000 )
 
         return info;
     },
