@@ -1,11 +1,12 @@
 const user = {
 
     register(){
-        let login = document.getElementById('login').value;
-        let name = document.getElementById('name').value;
+        let login = document.getElementById('form-reg_login').value;
+        let name = document.getElementById('form-reg_name').value;
         DB[`user-${login}`] = JSON.stringify({
             login: login,
             name: name,
+            avatar: 0,
             archive: {
                 count: 0,
             },
@@ -45,7 +46,7 @@ const user = {
 
             user.innerHTML = `
             <div class="user">
-                <img src="/img/avatar${this.current.avatar}.png" class="header__user-avatar" alt="ava" width="54">
+                <img src="img/avatar${this.current.avatar}.png" class="header__user-avatar" alt="ava" width="54">
                 <div class="header__user-name">
                     ${this.current.name}
                 </div>
@@ -79,6 +80,7 @@ const user = {
     show_user_list(){
         let app = document.getElementById('app');
         let user_list = this.list();
+        app.innerHTML = '';
         if(app && user_list.length > 0){
             for (const user_item of user_list) {
                 let user = JSON.parse(DB[user_item]);
@@ -89,7 +91,7 @@ const user = {
             `;;
             }
         } else {
-            app.innerHTML = `<p>Нет зарегистрированных пользователей</p>`
+            app.innerHTML = `<p>Нет зарегистрированных пользователей</p>`+ this.HTML__register_form();
         };
     },
 
@@ -102,5 +104,33 @@ const user = {
                 <div class="name">${this.current.name}</div>
             </div>
         `;
+    },
+
+    HTML__register_form(){
+        return `
+        <div class="app-wrapper__header">
+                        Users in DB are not hound!
+                    </div>
+
+                    <div class="app-wrapper__content">
+                        <div class="form-reg">
+                            <div class="form-reg__header">
+                                Регистрация нового пользователя
+                            </div>
+                            <table>
+                                <tr>
+                                    <td><label for="form-reg_login">Логин</label></td><td><input type="text" id="form-reg_login"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="form-reg_name">Имя</label></td><td><input type="text" id="form-reg_name"></td>
+                                </tr>
+                            </table>
+                            <div class="form-reg__control">
+                                <div class="btn" onclick="user.register();">Зарегистрироваться</div>
+                            </div>
+                        </div>
+                    </div>
+        `;
+
     },
 };

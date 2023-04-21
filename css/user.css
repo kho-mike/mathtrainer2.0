@@ -1,3 +1,15 @@
+/******************Registration form**********************/
+.form-reg input {
+    min-width: 200px;
+}
+
+
+
+
+
+
+
+/******************User box in header*****************************/
 .header__user {
     height: 100%;
     display: flex;

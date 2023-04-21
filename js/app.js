@@ -128,6 +128,8 @@ const app = {
 
         if(answeres.length > 0){
             timeStart = answeres[answeres.length - 1].timeStop;
+        } else {
+            timeStart = '******';
         }
 
         answeres.push( {
@@ -135,6 +137,7 @@ const app = {
             timeStop: timeStop,
             timeLength: timeStop - timeStart,
             input: inputAnswer, 
+            expression: this.getExpression(),
             current: this.temp.currentResult,
         } );
         this.memory.countAnsweres++;
@@ -164,6 +167,14 @@ const app = {
 
         
 
+    },
+
+    getExpression(){
+        if(this.temp.operation == 'composition'){
+            return `${this.memory.operand}" это ${ this.temp.currentValue } ${ this.memory.operator } "?"`;
+        } else {
+            return `${this.temp.currentValue} ${this.memory.operator} ${this.memory.operand} = ?`;
+        };
     },
 
     checkAnswer( inputAnswer ){
@@ -282,15 +293,17 @@ const app = {
     HTMLgetAnswer(){
         let inner = `<div class="app-wrapper" id="app-wrapper">`;
 
-        if(this.temp.operation == 'composition'){
+        if(this.memory.operation == 'composition'){
             inner += `
                 <div class="app-wrapper__header">
                     Упражнение "СОСТАВ ЧИСЛА ${this.memory.operand}"
                 </div>
                 <div class="app-wrapper__content">
-                    <div class="element" id="firstOperand"> ${ this.memory.operand } </div> 
+                    <div class="element"> ${ this.memory.operand } </div> 
+                    <div class="element"> это </div> 
+                    <div class="element" id="firstOperand"> ${ this.temp.currentValue } </div> 
                     <div class="element" id="operator">${ this.memory.operator }</div>
-                    <input class="input-waiting" id="" type="text" autofocus onchange=" app.getAnswere(this.value); ">
+                    <input class="input-waiting" id="" type="text" autofocus onchange=" app.getAnswer(this.value); ">
                 </div>
             `;
         } else {
@@ -367,7 +380,7 @@ const app = {
 
         for (const item of this.memory.allAnsweres) {
             info += `
-            <tr><td>34,5</td><td>3,5</td><td>36</td><td>${Math.round(item.timeLength/1000)} sec</td></tr>
+            <tr><td>${item.expression}</td><td>****</td><td>****</td><td>${Math.round(item.timeLength/1000)} sec</td></tr>
             `;
         };
 
